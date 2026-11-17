@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "jprojects",
-  description: "Small projects I build and share on TikTok, each one live to try.",
+  title: "Joy's projects",
+  description: "Things I've built for my TikTok.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

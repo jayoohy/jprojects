@@ -14,14 +14,13 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "debby",
-    title: "Creator showcase site",
-    description:
-      "A colourful, animated one-page site for a made-up UGC creator: her work, her numbers, her packages, and one button to message her.",
+    title: "UGC creator site",
+    description: "A portfolio page for a made-up creator.",
     madeOn: "2026-11-17",
   },
 ];
 
 export const portfolio = {
-  label: "See my portfolio",
+  label: "My portfolio",
   url: "https://joyogukah.vercel.app",
 };
