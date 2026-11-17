@@ -34,7 +34,7 @@
     .card:hover { transform: translateY(-10px) scale(1.03); }
     .card h3 { font-size: 24px; margin: 15px 0; }
     .icon { font-size: 50px; }
-    .thumb { width: 100%; height: 200px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 64px; }
+    .thumb { width: 100%; height: 200px; border-radius: 15px; object-fit: cover; display: block; }
 
     .stats { background: rgba(0,0,0,0.3); }
     .stats .container { display: flex; flex-wrap: wrap; gap: 30px; }
@@ -140,9 +140,9 @@
       <h2>My Portfolio</h2>
       <p class="subtitle">Check out some of my amazing work</p>
       <div class="grid3">
-        <div class="card"><div class="thumb" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">🧴</div><h3>Skincare Launch</h3><p>A series of authentic product demos that boosted engagement and sales.</p></div>
-        <div class="card"><div class="thumb" style="background: linear-gradient(135deg, #3b82f6, #6366f1);">🥤</div><h3>Beverage Campaign</h3><p>Fun, relatable unboxing content that went viral across platforms.</p></div>
-        <div class="card"><div class="thumb" style="background: linear-gradient(135deg, #8b5cf6, #d946ef);">👟</div><h3>Sneaker Drop</h3><p>Short-form video ads designed to stop the scroll and drive clicks.</p></div>
+        <div class="card"><img class="thumb" src="/debby/images/work-glow.png" alt="portfolio image" style="object-position: 55% 40%;"><h3>Skincare Launch</h3><p>A series of authentic product demos that boosted engagement and sales.</p></div>
+        <div class="card"><img class="thumb" src="/debby/images/work-sip.png" alt="portfolio image" style="object-position: 30% 30%;"><h3>Beverage Campaign</h3><p>Fun, relatable unboxing content that went viral across platforms.</p></div>
+        <div class="card"><img class="thumb" src="/debby/images/work-nimbus.png" alt="portfolio image" style="object-position: 50% 30%;"><h3>Sneaker Drop</h3><p>Short-form video ads designed to stop the scroll and drive clicks.</p></div>
       </div>
     </div>
   </section>
