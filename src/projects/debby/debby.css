@@ -1,0 +1,55 @@
+/*
+ * Debby site styles. Everything is scoped to the .debby wrapper (see app/debby/layout.tsx)
+ * so nothing here can change the home page or any other project.
+ */
+
+.debby {
+  min-height: 100dvh;
+  background: var(--color-debby-cream);
+  color: var(--color-debby-ink);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  overflow-x: clip;
+}
+
+.debby ::selection {
+  background: var(--color-debby-pink);
+  color: var(--color-debby-ink);
+}
+
+.debby :focus-visible {
+  outline: 3px solid var(--color-debby-ink);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Scroll entrance: only hidden when JS is on and motion is allowed, so content never gets stuck invisible. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .debby .reveal {
+    opacity: 0;
+    transform: translate3d(0, 48px, 0) scale(0.97);
+    transition:
+      opacity 0.9s var(--ease-spring),
+      transform 0.9s var(--ease-spring);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .debby .reveal[data-in="true"] {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Pointer / touch tilt, driven by --rx and --ry from the useTilt hook. */
+.debby .tilt {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform-style: preserve-3d;
+  transition: transform 0.6s var(--ease-spring);
+}
+
+.debby .stage-3d {
+  perspective: 1100px;
+}
+
+.debby .preserve-3d {
+  transform-style: preserve-3d;
+}

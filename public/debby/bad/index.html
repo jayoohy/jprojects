@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UGC Creator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%); color: white; overflow-x: hidden; }
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 80px 0; }
+    h1 { font-size: clamp(36px, 8vw, 72px); font-weight: 800; background: linear-gradient(90deg, #818cf8, #a78bfa, #f0abfc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: pulse 2s infinite; }
+    h2 { font-size: clamp(30px, 6vw, 48px); text-align: center; margin-bottom: 20px; background: linear-gradient(90deg, #93c5fd, #c4b5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    p { color: #e2e8f0; font-size: 15px; line-height: 1.6; }
+    .subtitle { text-align: center; margin-bottom: 50px; font-size: 18px; }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+    @keyframes float { 0% { top: 0px; } 50% { top: -30px; } 100% { top: 0px; } }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes glow { 0% { box-shadow: 0 0 10px rgba(139,92,246,0.4); } 50% { box-shadow: 0 0 30px rgba(139,92,246,0.7), 0 0 60px rgba(99,102,241,0.4); } 100% { box-shadow: 0 0 10px rgba(139,92,246,0.4); } }
+
+    nav { position: fixed; top: 0; left: 0; width: 100%; background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); padding: 20px 50px; display: flex; justify-content: space-between; z-index: 9999; border: 1px solid rgba(255,255,255,0.2); }
+    nav a { color: white; margin-left: 30px; text-decoration: none; }
+    nav .logo { font-weight: 800; font-size: 24px; }
+
+    .hero { text-align: center; padding: 200px 20px 80px; position: relative; min-height: 900px; }
+    .hero p { font-size: 24px; margin: 30px auto; width: 100%; max-width: 600px; }
+    .emoji { position: absolute; font-size: 60px; animation: float 3s infinite; }
+    .btn { display: inline-block; padding: 18px 50px; background: linear-gradient(90deg, #6366f1, #8b5cf6); color: white; border-radius: 50px; font-size: 18px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; animation: glow 2s infinite; margin: 10px; }
+    .btn2 { background: transparent; border: 2px solid white; animation: none; }
+
+    .grid3 { display: flex; flex-wrap: wrap; gap: 30px; }
+    .card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 30px; flex: 1 1 280px; transition: all 0.3s; }
+    .card:hover { transform: translateY(-10px) scale(1.03); }
+    .card h3 { font-size: 24px; margin: 15px 0; }
+    .icon { font-size: 50px; }
+    .thumb { width: 100%; height: 200px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 64px; }
+
+    .stats { background: rgba(0,0,0,0.3); }
+    .stats .container { display: flex; flex-wrap: wrap; gap: 30px; }
+    .stat { text-align: center; flex: 1 1 140px; }
+    .stat h3 { font-size: 60px; color: #a5b4fc; }
+
+    .price { text-align: center; }
+    .price h3 { font-size: 24px; }
+    .price .amount { font-size: 56px; font-weight: 800; margin: 20px 0; color: #c4b5fd; }
+    .price ul { list-style: none; margin-bottom: 30px; }
+    .price li { padding: 8px 0; color: #e2e8f0; }
+    .popular { border: 2px solid #8b5cf6; animation: glow 2s infinite; }
+
+    .testimonial { font-style: italic; }
+    .testimonial .name { color: #93c5fd; margin-top: 15px; font-style: normal; font-weight: 600; }
+
+    .contact form { width: 100%; max-width: 600px; margin: 0 auto; }
+    .contact input, .contact textarea { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: none; background: rgba(255,255,255,0.1); color: #e2e8f0; font-size: 16px; }
+    .contact input::placeholder, .contact textarea::placeholder { color: #94a3b8; }
+
+    footer { text-align: center; padding: 40px; background: rgba(0,0,0,0.4); }
+    footer p { font-size: 13px; color: #cbd5e1; }
+
+    @media (max-width: 768px) {
+      nav { padding: 15px 20px; }
+      nav div:last-child { display: none; }
+      section { padding: 50px 0; }
+      .hero { padding-top: 120px; min-height: 0; }
+      .hero p { font-size: 18px; }
+      .emoji { font-size: 36px; }
+      .btn { padding: 14px 32px; font-size: 16px; }
+      .stat h3 { font-size: 40px; }
+      .card:hover { transform: translateY(-8px); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">✨ UGC Creator</div>
+    <div>
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="emoji" style="left: 10%; top: 250px;">🚀</div>
+    <div class="emoji" style="right: 10%; top: 300px; animation-delay: 1s;">💫</div>
+    <div class="emoji" style="left: 20%; top: 600px; animation-delay: 2s;">🎬</div>
+    <div class="emoji" style="right: 20%; top: 650px;">🔥</div>
+    <h1>Elevate Your Brand With Authentic UGC</h1>
+    <p>I'm a passionate and creative UGC creator dedicated to elevating your brand with authentic, engaging content that resonates with your audience in today's fast-paced digital landscape.</p>
+    <a href="#" class="btn">Get Started 🚀</a>
+    <a href="#" class="btn btn2">Learn More</a>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2>About Me</h2>
+      <p class="subtitle">Hi, I'm Alex! I'm a UGC creator who loves helping brands tell their story through relatable, scroll-stopping content. Let's create something amazing together.</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <p class="subtitle">We offer a wide range of cutting-edge solutions tailored to your needs</p>
+      <div class="grid3">
+        <div class="card">
+          <div class="icon">🎥</div>
+          <h3>Video Content</h3>
+          <p>High quality video content that drives engagement and boosts conversions for your brand.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📸</div>
+          <h3>Photo Content</h3>
+          <p>Stunning photography that captures attention and tells your brand story in a compelling way.</p>
+        </div>
+        <div class="card">
+          <div class="icon">💡</div>
+          <h3>Strategy</h3>
+          <p>Data-driven strategies to take your social media presence to the next level and beyond.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container">
+      <div class="stat"><h3>10K+</h3><p>Happy Clients</p></div>
+      <div class="stat"><h3>500+</h3><p>Projects Completed</p></div>
+      <div class="stat"><h3>99%</h3><p>Satisfaction</p></div>
+      <div class="stat"><h3>24/7</h3><p>Support</p></div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="container">
+      <h2>My Portfolio</h2>
+      <p class="subtitle">Check out some of my amazing work</p>
+      <div class="grid3">
+        <div class="card"><div class="thumb" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">🧴</div><h3>Skincare Launch</h3><p>A series of authentic product demos that boosted engagement and sales.</p></div>
+        <div class="card"><div class="thumb" style="background: linear-gradient(135deg, #3b82f6, #6366f1);">🥤</div><h3>Beverage Campaign</h3><p>Fun, relatable unboxing content that went viral across platforms.</p></div>
+        <div class="card"><div class="thumb" style="background: linear-gradient(135deg, #8b5cf6, #d946ef);">👟</div><h3>Sneaker Drop</h3><p>Short-form video ads designed to stop the scroll and drive clicks.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="container">
+      <h2>Pricing</h2>
+      <p class="subtitle">Choose the plan that's right for you</p>
+      <div class="grid3">
+        <div class="card price">
+          <h3>Basic</h3>
+          <div class="amount">$29<span style="font-size:16px">/mo</span></div>
+          <ul><li>✓ 1 video per month</li><li>✓ Basic editing</li><li>✓ Email support</li></ul>
+          <a href="#" class="btn">Get Started</a>
+        </div>
+        <div class="card price popular">
+          <h3>Pro ⭐</h3>
+          <div class="amount">$99<span style="font-size:16px">/mo</span></div>
+          <ul><li>✓ 4 videos per month</li><li>✓ Advanced editing</li><li>✓ Priority support</li></ul>
+          <a href="#" class="btn">Get Started</a>
+        </div>
+        <div class="card price">
+          <h3>Enterprise</h3>
+          <div class="amount">$299<span style="font-size:16px">/mo</span></div>
+          <ul><li>✓ Everything in Pro</li><li>✓ Unlimited support</li><li>✓ Custom solutions</li></ul>
+          <a href="#" class="btn">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <div class="container">
+      <h2>What Clients Say</h2>
+      <div class="grid3">
+        <div class="card testimonial">"Absolutely amazing! Exceeded all our expectations. Highly recommend!"<div class="name">— Sarah J., CEO</div></div>
+        <div class="card testimonial">"Game-changer for our brand. The results speak for themselves."<div class="name">— Michael R., Marketing Director</div></div>
+        <div class="card testimonial">"Professional, creative, and a pleasure to work with. 5 stars!"<div class="name">— Emily T., Founder</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Get In Touch</h2>
+      <p class="subtitle">Ready to take your brand to the next level? Let's talk!</p>
+      <form onsubmit="alert('Message sent!'); console.log('form submitted'); return false;">
+        <input type="text" placeholder="Name">
+        <input type="text" placeholder="Email">
+        <textarea rows="5" placeholder="Message"></textarea>
+        <a href="#" class="btn">Send Message ✉️</a>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Alex. All rights reserved. Made with ❤️</p>
+  </footer>
+
+</body>
+</html>

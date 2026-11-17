@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+/*
+ * Shared base for the whole site. Each project keeps its own look:
+ *  - colour tokens are prefixed with the project name (debby-*), so projects never clash
+ *  - project-only rules live in that project's own CSS file, scoped to its wrapper class
+ */
+
+/* "static" makes sure these variables are always emitted, even for plain CSS files that read them. */
+@theme static {
+  --color-debby-cream: #fff4e0;
+  --color-debby-ink: #1b1030;
+  --color-debby-pink: #ff3d8b;
+  --color-debby-violet: #6236ff;
+  --color-debby-sun: #ffd23f;
+  --color-debby-mint: #1fd6a5;
+  --color-debby-tangerine: #ff7a1a;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-debby-display: var(--font-bricolage);
+
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --animate-float: float 7s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+  --animate-float-slow: float 10s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+  --animate-spin-slow: spin-slow 22s linear infinite;
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-wiggle: wiggle 3.2s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+  --animate-sway: sway 9s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translate3d(0, -16px, 0) rotate(calc(var(--r, 0deg) + 3deg));
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotateY(-14deg) rotateX(4deg);
+  }
+  50% {
+    transform: rotateY(14deg) rotateX(-4deg);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #faf9f6;
+  color: #17151a;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
